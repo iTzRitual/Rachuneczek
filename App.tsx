@@ -1,117 +1,211 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, {useState} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
   View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Modal,
 } from 'react-native';
+import Svg from 'react-native-svg';
+import AddReceipt from './assets/addReceipt.svg';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+const App = () => {
+  const renderReceipt = (index: number) => (
+    <View key={index} style={styles.tabReceipts}>
+      <View style={styles.placeholder}></View>
+      <View style={styles.tabContainer}>
+        <Text style={styles.receiptEl}>ROSSMAN</Text>
+        <Text style={styles.receiptEl}>24.11.2000</Text>
+      </View>
+      <Text style={styles.price}>32,31 PLN</Text>
     </View>
   );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const [isModalVisible, setModalVisible] = useState(false);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
   };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    <View style={styles.container}>
+      {/* Treść strony */}
+      <ScrollView style={styles.content}>
+        <Text style={styles.title}>Home</Text>
+        <View style={styles.tab}>
+          <Text style={styles.tabtext}>All receipts</Text>
+          <Text style={styles.tabtext}>&gt;</Text>
+        </View>
+        <Text style={styles.subtitle}>Latest receipts</Text>
+        <View style={styles.tablist}>
+          {[...Array(7)].map((_, index) => renderReceipt(index))}
         </View>
       </ScrollView>
-    </SafeAreaView>
+
+      {/* Modal */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={() => {
+          // Zamknięcie modala, gdy użytkownik naciśnie "back" na Androidzie
+          setModalVisible(!isModalVisible);
+        }}>
+        <View style={styles.modalContainer}>
+          {/* Tutaj umieść zawartość modala */}
+          <View style={styles.modalBox}>
+            <Text style={styles.modalText}>Add Receipt</Text>
+            <TouchableOpacity onPress={toggleModal}>
+              <Text style={styles.closeModalText}>Make Photo</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleModal}>
+              <Text style={styles.closeModalText}>Choose from library</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleModal}>
+              <Text style={styles.closeModalText}>Close Modal</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Komponent na dole ekranu */}
+      <View style={styles.fixedBottom}>
+        <TouchableOpacity style={styles.fixedButton}>
+          <Text style={styles.buttonText} onPress={toggleModal}>
+            <AddReceipt width={20} height={20} />
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  modalBox: {
+    backgroundColor: '#FFFFFF',
+    width: 300,
+    height: 300,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  sectionTitle: {
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalText: {
+    color: '#272727',
     fontSize: 24,
-    fontWeight: '600',
+    marginBottom: 20,
   },
-  sectionDescription: {
-    marginTop: 8,
+  closeModalText: {
+    color: '#272727',
     fontSize: 18,
-    fontWeight: '400',
   },
-  highlight: {
-    fontWeight: '700',
+  receiptEl: {
+    color: '#FFFFFF',
+    paddingLeft: 10,
+  },
+  price: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: 'auto',
+  },
+  placeholder: {
+    width: 50,
+    height: 50,
+    backgroundColor: '#BFBFBF',
+    borderRadius: 5,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#272727',
+  },
+  content: {
+    flex: 1,
+    padding: 20,
+  },
+  title: {
+    color: '#FFFFFF',
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    marginTop: 20,
+  },
+  subtitle: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    marginBottom: 0,
+    marginTop: 30,
+    textTransform: 'uppercase',
+    fontWeight: '300',
+  },
+  tab: {
+    color: '#FFFFFF',
+    backgroundColor: '#2F2F2F',
+    fontSize: 16,
+    padding: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  tabReceipts: {
+    color: '#FFFFFF',
+    backgroundColor: '#2F2F2F',
+    fontSize: 16,
+    padding: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  tabContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  tablist: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 10,
+    display: 'flex',
+    gap: 10,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    marginBottom: 100,
+  },
+  tabtext: {
+    color: '#FFFFFF',
+    fontSize: 16,
+  },
+  fixedBottom: {
+    position: 'absolute',
+    bottom: 20,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  fixedButton: {
+    backgroundColor: '#FFFFFF',
+    width: 100,
+    height: 40,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#272727',
+    fontSize: 32,
+    fontWeight: 'bold',
   },
 });
 
