@@ -1,79 +1,76 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Rachuneczek - Receipt Collection App
 
-# Getting Started
+Rachuneczek is a straightforward React Native application designed for the purpose of collecting and managing receipts.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Installation
 
-## Step 1: Start the Metro Server
+Before you begin, ensure that you have Node.js and npm installed on your machine.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+1. Clone the repository:
 
-To start Metro, run the following command from the _root_ of your React Native project:
+   ```bash
+   git clone <repository-url>
+   cd Rachuneczek
+   ```
 
-```bash
-# using npm
-npm start
+2. Install dependencies:
 
-# OR using Yarn
-yarn start
-```
+   ```bash
+   npm install
+   ```
 
-## Step 2: Start your Application
+3. Run the application:
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+   For Android/iOS:
 
-### For Android
+   ```bash
+   npm start
 
-```bash
-# using npm
-npm run android
 
-# OR using Yarn
-yarn android
-```
+   ```
 
-### For iOS
+## Dependencies
 
-```bash
-# using npm
-npm run ios
+- **@react-navigation/native:** ^6.1.9
+- **@react-navigation/native-stack:** ^6.9.17
+- **@react-navigation/stack:** ^6.3.20
+- **firebase:** ^10.7.1
+- **react:** 18.2.0
+- **react-native:** 0.73.0
+- **react-native-fast-image:** ^8.6.3
+- **react-native-image-crop-picker:** ^0.40.2
+- **react-native-permissions:** ^4.0.1
+- **react-native-safe-area-context:** ^4.8.1
+- **react-native-screens:** ^3.29.0
+- **react-native-sqlite-storage:** ^6.0.1
+- **react-native-svg:** ^14.1.0
+- **react-navigation:** ^4.4.4
+- **react-navigation-stack:** ^2.10.4
+- **rn-ocr-lib:** ^0.2.4
+- **rn-text-detector:** ^0.0.8
 
-# OR using Yarn
-yarn ios
-```
+## Development Dependencies
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+- **@babel/core:** ^7.20.0
+- **@babel/preset-env:** ^7.20.0
+- **@babel/runtime:** ^7.20.0
+- **@react-native/babel-preset:** ^0.73.18
+- **@react-native/eslint-config:** ^0.73.1
+- **@react-native/metro-config:** ^0.73.2
+- **@react-native/typescript-config:** ^0.73.1
+- **@types/react:** ^18.2.6
+- **@types/react-native-sqlite-storage:** ^6.0.5
+- **@types/react-test-renderer:** ^18.0.0
+- **babel-jest:** ^29.6.3
+- **eslint:** ^8.19.0
+- **jest:** ^29.6.3
+- **prettier:** 2.8.8
+- **react-native-svg-transformer:** ^1.2.0
+- **react-test-renderer:** 18.2.0
+- **typescript:** ^5.3.3
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+## Node Version Requirement
 
-## Step 3: Modifying your App
+Node: >=18
 
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Feel free to reach out if you have any questions or encounter any issues. Happy coding!
